@@ -30,6 +30,10 @@ logging.basicConfig(level=logging.INFO)
 sessionStorage = {}
 
 
+@app.route('/', methods=['GET'])
+def testing():
+    return 'running ig :)'
+
 @app.route('/post', methods=['POST'])
 # Функция получает тело запроса и возвращает ответ.
 # Внутри функции доступен request.json - это JSON, 
@@ -132,4 +136,4 @@ def get_suggests(user_id):
 
 
 if __name__ == '__main__':
-    app.run(host='br3nd4nt.pythonanywhere.com', port=5050)
+    app.run()
