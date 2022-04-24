@@ -132,4 +132,4 @@ def get_suggests(user_id):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='br3nd4nt.pythonanywhere.com', port=5050)
