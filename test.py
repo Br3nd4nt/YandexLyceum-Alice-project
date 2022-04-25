@@ -1,15 +1,5 @@
-import os
-
-from flask import Flask
-
-app = Flask(__name__)
-
-
-@app.route("/")
-def index():
-    return "Привет от приложения Flask"
-
-
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+with open('countries.csv', 'r') as r:
+    with open('countries(changed).csv', 'w') as w:
+        im = r.readlines()
+        for i in im:
+            w.write(i.replace(';', ','))
