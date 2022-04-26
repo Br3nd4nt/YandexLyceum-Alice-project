@@ -5,7 +5,7 @@ import json
 from cities_parser import CitiesParser
 
 app = Flask(__name__)
-logging.basicConfig(level=logging.INFO)#, filename='server.log')
+logging.basicConfig(level=logging.INFO, filename='server.log')
 logging.warning('NEW SESSION')
 sessionStorage = {}
 cities_parser = CitiesParser()
