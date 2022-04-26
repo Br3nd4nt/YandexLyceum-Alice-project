@@ -26,14 +26,21 @@ def main():
             'end_session': False
         }
     }
-    # handle_dialog(request.json, response)
+    handle_dialog(request.json, response)
     logging.info(f'Response:  {response!r}')
     return json.dumps(response)
 
 
 def handle_dialog(req, res):
     user_id = req['session']['user_id']
-
+    try:
+        high_score = req['state']
+        logging.info(high_score)
+        logging.info(f'User highscore: {sessionStorage[user_id]["high_score"]}')
+    except Exception:
+        high_score = 0
+        logging.info(f'User highscore: {None}')
+        
     if req['session']['new']:
             sessionStorage[user_id] = {
                 'suggests': [
@@ -45,7 +52,8 @@ def handle_dialog(req, res):
                 'playing': False,
                 'answered_wrong': False,
                 'lost': False,
-                'score': 0
+                'score': 0,
+                'high_score': high_score
             }
             res['response']['text'] = '''Привет! Сыграем в угадай город? 
             Я буду называть город, а ты попытаешься угадать в какой этот город находится 
@@ -83,7 +91,11 @@ def handle_dialog(req, res):
                         res['response']['text'] = text
                         res['response']['buttons'] = get_suggests(user_id)
                     else:
-                        text = '''Увы, вы проиграли:(
+                        if sessionStorage[user_id]['score'] > sessionStorage[user_id]['high_score']:
+                            res['user_state_update']['high_score'] = sessionStorage[user_id]['score']
+                        hs_text = ''''''
+                        text = f'''Увы, вы проиграли:(
+                        {'a'}
                         хотите сыграть ещё раз?'''
                         sessionStorage[user_id]['suggests'] = [
                             'Давай',
