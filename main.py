@@ -36,7 +36,7 @@ def handle_dialog(req, res):
     try:
         high_score = req['state']['value']
         logging.info(high_score)
-        logging.info(f'User highscore: {sessionStorage[user_id]["high_score"]}')
+        logging.info(f'User highscore: {sessionStorage[user_id]["value"]}')
     except Exception:
         high_score = 0
         logging.info(f'User highscore: {None}')
@@ -53,7 +53,7 @@ def handle_dialog(req, res):
                 'answered_wrong': False,
                 'lost': False,
                 'score': 0,
-                'high_score': high_score
+                'value': high_score
             }
             res['response']['text'] = '''Привет! Сыграем в угадай город? 
             Я буду называть город, а ты попытаешься угадать в какой этот город находится 
@@ -92,7 +92,7 @@ def handle_dialog(req, res):
                         res['response']['buttons'] = get_suggests(user_id)
                     else:
                         if sessionStorage[user_id]['score'] > sessionStorage[user_id]['value']:
-                            res['user_state_update'] = {'high_score': sessionStorage[user_id]['score']}
+                            res['user_state_update'] = {'value': sessionStorage[user_id]['value']}
                         hs_text = ''''''
                         text = f'''Увы, вы проиграли:(
                         {'a'}
