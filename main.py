@@ -92,7 +92,7 @@ def handle_dialog(req, res):
                         res['response']['buttons'] = get_suggests(user_id)
                     else:
                         if sessionStorage[user_id]['score'] > sessionStorage[user_id]['high_score']:
-                            res['user_state_update']['high_score'] = sessionStorage[user_id]['score']
+                            res['user_state_update'] = {'high_score': sessionStorage[user_id]['score']}
                         hs_text = ''''''
                         text = f'''Увы, вы проиграли:(
                         {'a'}
