@@ -33,13 +33,13 @@ def main():
 
 def handle_dialog(req, res):
     user_id = req['session']['user_id']
-    try:
-        high_score = req['state']['value']
-        logging.info(high_score)
-        logging.info(f'User highscore: {sessionStorage[user_id]["value"]}')
-    except Exception:
-        high_score = 0
-        logging.info(f'User highscore: {None}')
+    # try:
+    #     high_score = req['state']['value']
+    #     logging.info(high_score)
+    #     logging.info(f'User highscore: {sessionStorage[user_id]["value"]}')
+    # except Exception:
+    #     high_score = 0
+    #     logging.info(f'User highscore: {None}')
         
     if req['session']['new']:
             sessionStorage[user_id] = {
@@ -53,7 +53,7 @@ def handle_dialog(req, res):
                 'answered_wrong': False,
                 'lost': False,
                 'score': 0,
-                'value': high_score
+                'high_score': 0
             }
             res['response']['text'] = '''Привет! Сыграем в угадай город? 
             Я буду называть город, а ты попытаешься угадать в какой этот город находится 
@@ -91,11 +91,12 @@ def handle_dialog(req, res):
                         res['response']['text'] = text
                         res['response']['buttons'] = get_suggests(user_id)
                     else:
-                        if sessionStorage[user_id]['score'] > sessionStorage[user_id]['value']:
-                            res['user_state_update'] = {'value': sessionStorage[user_id]['value']}
-                        hs_text = ''''''
+                        hs_text = ''
+                        if sessionStorage[user_id]['score'] > sessionStorage[user_id]['high_score']:
+                            sessionStorage[user_id]['high_score'] = sessionStorage[user_id]['score']
+                            hs_text = f'''Ваш новый рекорд: {sessionStorage[user_id]['high_score']}'''
                         text = f'''Увы, вы проиграли:(
-                        {'a'}
+                        {hs_text}
                         хотите сыграть ещё раз?'''
                         sessionStorage[user_id]['suggests'] = [
                             'Давай',
@@ -122,7 +123,10 @@ def handle_dialog(req, res):
                         sessionStorage[user_id]['started'] = True
                         res['response']['text'] = '''Отлично! 
                         Какой уровень сложности ты предпочитаешь?'''
-                        sessionStorage[user_id]['suggests'] = ['Сложный', 'Лёгкий']
+                        sessionStorage[user_id]['suggests'] = [
+                            'Сложный',
+                            'Лёгкий'
+                            ]
                         res['response']['buttons'] = get_suggests(user_id)
                 else:
                     res['response']['text'] = '''Ну ладно( Увидимся!'''
