@@ -11,6 +11,10 @@ logging.warning('NEW SESSION')
 sessionStorage = {}
 cities_parser = CitiesParser()
 
+@app.route('/', methods=['GET'])
+def get():
+    return'<h1>Server is Running</h1>'
+
 
 @app.route('/post', methods=['POST'])
 def main():
