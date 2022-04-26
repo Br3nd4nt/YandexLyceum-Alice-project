@@ -80,8 +80,7 @@ def handle_dialog(req, res):
                     res['response']['buttons'] = get_suggests(user_id)
                 else:
                     if not sessionStorage[user_id]['answered_wrong']:
-                        text = '''К сожалению, нет.
-                        Попробуй ещё раз!'''
+                        text = '''К сожалению, нет.\nПопробуй ещё раз!'''
                         sessionStorage[user_id]['answered_wrong'] = True
                         index = sessionStorage[user_id]['suggests'].index(answer)
                         sessionStorage[user_id]['suggests'].pop(index)
