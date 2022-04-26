@@ -5,7 +5,7 @@ import json
 from cities_parser import CitiesParser
 
 app = Flask(__name__)
-logging.basicConfig(level=logging.INFO, filename='server.log')
+logging.basicConfig(level=logging.INFO)# filename='server.log')
 logging.warning('NEW SESSION')
 sessionStorage = {}
 cities_parser = CitiesParser()
@@ -167,5 +167,5 @@ def get_suggests(user_id):
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 8080))
-    app.run(host='0.0.0.0', port=port, ssl_context='adhoc')
+    port = int(os.environ.get("PORT", 6969))
+    app.run(host='0.0.0.0', port=port)

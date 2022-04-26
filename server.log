@@ -176,3 +176,7 @@ INFO:root:Request: {'meta': {'locale': 'ru-RU', 'timezone': 'UTC', 'client_id': 
 INFO:root:current state: {'suggests': ['Давай', 'Нет'], 'started': False, 'difficulty': None, 'playing': False, 'answered_wrong': False, 'lost': False, 'score': 0, 'right_answer': 'Габон'}
 INFO:root:Response:  {'session': {'message_id': 14, 'session_id': 'aa3efe3a-70f6-46d3-93e2-e5a25f76c944', 'skill_id': 'b94ac439-74b7-4953-9007-3ec44156343e', 'user': {'user_id': '570E371313E316FB48F5A86A5060292468D86A74E0C26657FA8CFF55F8701745'}, 'application': {'application_id': '4D73803030F9A56FFBA3A5398BA36B8E7E560D6A45C1E0557508C627454CFA4C'}, 'new': False, 'user_id': '4D73803030F9A56FFBA3A5398BA36B8E7E560D6A45C1E0557508C627454CFA4C'}, 'version': '1.0', 'response': {'end_session': True, 'text': 'Ну ладно( Увидимся!'}}
 INFO:werkzeug:127.0.0.1 - - [26/Apr/2022 01:42:14] "POST /post HTTP/1.1" 200 -
+WARNING:root:NEW SESSION
+WARNING:werkzeug: * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+INFO:werkzeug: * Running on http://192.168.1.72:6969/ (Press CTRL+C to quit)
