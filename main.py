@@ -34,7 +34,7 @@ def main():
 def handle_dialog(req, res):
     user_id = req['session']['user_id']
     try:
-        high_score = req['state']
+        high_score = req['state']['value']
         logging.info(high_score)
         logging.info(f'User highscore: {sessionStorage[user_id]["high_score"]}')
     except Exception:
@@ -91,7 +91,7 @@ def handle_dialog(req, res):
                         res['response']['text'] = text
                         res['response']['buttons'] = get_suggests(user_id)
                     else:
-                        if sessionStorage[user_id]['score'] > sessionStorage[user_id]['high_score']:
+                        if sessionStorage[user_id]['score'] > sessionStorage[user_id]['value']:
                             res['user_state_update'] = {'high_score': sessionStorage[user_id]['score']}
                         hs_text = ''''''
                         text = f'''Увы, вы проиграли:(
