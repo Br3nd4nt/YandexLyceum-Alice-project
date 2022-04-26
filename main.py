@@ -135,9 +135,7 @@ def handle_dialog(req, res):
                         sessionStorage[user_id]['difficulty'] = 'hard'
                         sessionStorage[user_id]['playing'] = True
                         question = cities_parser.get_question_hard()
-                        text = f'''Отлично! тогда начнём игру!\n
-                        Ваш первый город: {question[0][0]}
-                        В какой же стране он находится?'''
+                        text = f'''Отлично! тогда начнём игру!\nВаш первый город: {question[0][0]}\nВ какой же стране он находится?'''
                         sessionStorage[user_id]['right_answer'] = question[0][1]
                         sessionStorage[user_id]['suggests'] = question[1]
                         res['response']['text'] = text
