@@ -56,8 +56,8 @@ def handle_dialog(req, res):
                 'high_score': 0
             }
             res['response']['text'] = '''Привет! Сыграем в угадай город? 
-            Я буду называть город, а ты попытаешься угадать в какой этот город находится 
-            (это может оказаться непросто!)'''
+Я буду называть город, а ты попытаешься угадать в какой этот город находится 
+(это может оказаться непросто!)'''
             res['response']['buttons'] = get_suggests(user_id)
             return
     else:
@@ -72,9 +72,9 @@ def handle_dialog(req, res):
                     else:
                         question = cities_parser.get_question_easy()
                     text = f'''Правильно!
-                    Ваш счёт: {sessionStorage[user_id]['score']}
-                    Следующий город: {question[0][0]}
-                    Где он находится?'''
+Ваш счёт: {sessionStorage[user_id]['score']}
+Следующий город: {question[0][0]}
+Где он находится?'''
                     sessionStorage[user_id]['answered_wrong'] = False
                     sessionStorage[user_id]['right_answer'] = question[0][1]
                     sessionStorage[user_id]['suggests'] = question[1]
@@ -96,8 +96,8 @@ def handle_dialog(req, res):
                             sessionStorage[user_id]['high_score'] = sessionStorage[user_id]['score']
                             hs_text = f'''Ваш новый рекорд: {sessionStorage[user_id]['high_score']}'''
                         text = f'''Увы, вы проиграли:(
-                        {hs_text}
-                        хотите сыграть ещё раз?'''
+{hs_text}
+хотите сыграть ещё раз?'''
                         sessionStorage[user_id]['suggests'] = [
                             'Давай',
                             'Нет'
@@ -122,7 +122,7 @@ def handle_dialog(req, res):
                     ]: 
                         sessionStorage[user_id]['started'] = True
                         res['response']['text'] = '''Отлично! 
-                        Какой уровень сложности ты предпочитаешь?'''
+Какой уровень сложности ты предпочитаешь?'''
                         sessionStorage[user_id]['suggests'] = [
                             'Сложный',
                             'Лёгкий'
