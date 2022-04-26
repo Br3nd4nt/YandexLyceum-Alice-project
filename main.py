@@ -26,7 +26,7 @@ def main():
             'end_session': False
         }
     }
-    handle_dialog(request.json, response)
+    # handle_dialog(request.json, response)
     logging.info(f'Response:  {response!r}')
     return json.dumps(response)
 
@@ -167,5 +167,5 @@ def get_suggests(user_id):
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 6969))
+    port = 6969#int(os.environ.get("PORT", 6969))
     app.run(host='0.0.0.0', port=port)
